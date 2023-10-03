@@ -8,6 +8,14 @@ const productSchema = {
     reqQuery: Joi.object().length(0),
     reqBody: Joi.object({
         brand: Joi.string().optional(),
+        category: Joi.string().optional(),
+        discountPercentage: Joi.number().optional(),
+        id: Joi.number().optional(),
+        price: Joi.number().optional(),
+        rating: Joi.number().optional(),
+        stock: Joi.number().optional(),
+        thumbnail: Joi.string().optional(),
+        title: Joi.string().optional(),
     })
 }
 const getProductApi = async (req: Request<IProduct>, res: Response) => {
@@ -22,5 +30,5 @@ const getProductApi = async (req: Request<IProduct>, res: Response) => {
 export default wrap(getProductApi, {
     authedOnly: false,
     catch: true,
-    validate: undefined
+    validate: productSchema
 })
